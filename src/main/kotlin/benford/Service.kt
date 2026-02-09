@@ -4,7 +4,7 @@ import org.apache.commons.math3.stat.inference.ChiSquareTest
 import kotlin.collections.filter
 import kotlin.collections.mapValues
 
-val bedfordDist: Map<Int, Double> = mapOf(
+val benfordDist: Map<Int, Double> = mapOf(
     1 to 0.3010299956639812,
     2 to 0.17609125905568124,
     3 to 0.12493873660829993,
@@ -16,27 +16,27 @@ val bedfordDist: Map<Int, Double> = mapOf(
     9 to 0.04575749056067514
 )
 
-fun analyse(input: BedfordInput): BedfordOutput {
+fun analyse(input: BenfordInput): BenfordOutput {
     print("input:$input")
     val counts = input.extractNumbers()
                       .extractLeadingDigit()
                       .countDigits()
 
     val pValue = ChiSquareTest().chiSquareTest(
-        bedfordDist.values.toDoubleArray(),
+        benfordDist.values.toDoubleArray(),
         counts.map { it.toLong() }.toLongArray()
     )
 
     val sum = counts.sum()
 
-    return BedfordOutput(
+    return BenfordOutput(
         pValue < input.sig,
-        bedfordDist.values,
+        benfordDist.values,
         counts.map { it.toDouble() / sum }
     )
 }
 
-private fun BedfordInput.extractNumbers() =
+private fun BenfordInput.extractNumbers() =
     this.text
         .split(',')
         .zipWithNext()
