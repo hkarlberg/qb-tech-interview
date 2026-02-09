@@ -1,5 +1,9 @@
+import org.gradle.kotlin.dsl.application
+
 val kotlin_version: String by project
 val logback_version: String by project
+val kmath_version: String by project
+val commons_math_version: String by project
 
 plugins {
     kotlin("jvm") version "2.3.0"
@@ -25,6 +29,8 @@ dependencies {
     implementation("io.ktor:ktor-server-netty")
     implementation("ch.qos.logback:logback-classic:$logback_version")
     implementation("io.ktor:ktor-server-config-yaml")
+    implementation("space.kscience:kmath-core:$kmath_version")
+    implementation("org.apache.commons:commons-math3:$commons_math_version")
     testImplementation("io.ktor:ktor-server-test-host")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")
 }
