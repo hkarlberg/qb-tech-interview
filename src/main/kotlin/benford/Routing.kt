@@ -9,8 +9,9 @@ import io.ktor.server.routing.routing
 fun Application.configureRouting() {
     routing {
         post("/benford/analyse") {
-            val output = analyse(call.receive<BenfordInput>())
-            call.respond(output)
+            call.receive<BenfordInput>()
+                .let { analyse(it) }
+                .let { call.respond(it) }
         }
     }
 }

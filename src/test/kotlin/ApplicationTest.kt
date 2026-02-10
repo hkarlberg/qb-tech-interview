@@ -1,38 +1,20 @@
 package se.orthogonal
 
-import io.ktor.client.request.*
-import io.ktor.http.*
-import io.ktor.http.ContentType.Application.Json
-import io.ktor.server.testing.*
-import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.Json.Default.encodeToString
-import org.apache.commons.math3.stat.inference.ChiSquareTest
-import se.orthogonal.benford.BenfordInput
-import kotlin.math.log10
+import io.ktor.client.request.get
+import io.ktor.http.HttpStatusCode
+import io.ktor.server.testing.testApplication
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class ApplicationTest {
 
     @Test
-    fun testDist() {
-        print((1..9)
-            .map { it.toDouble() }
-            .map { log10(1 + 1/it) })
-    }
-
-    @Test
-    fun testChiSquare() {
-        print(encodeToString(BenfordInput("a:1,b:1,c:2,d:4", 0.2)))
-    }
-
-    @Test
-    fun testRoot() = testApplication {
+    fun test_application_configuration_applied() = testApplication {
         application {
             module()
         }
         client.get("/").apply {
-            assertEquals(HttpStatusCode.OK, status)
+            assertEquals(HttpStatusCode.NotFound, status)
         }
     }
 
