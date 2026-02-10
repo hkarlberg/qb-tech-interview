@@ -9,16 +9,6 @@ Here are some useful links to get you started:
 - The [Ktor Slack chat](https://app.slack.com/client/T09229ZC6/C0A974TJ9). You'll need
   to [request an invite](https://surveys.jetbrains.com/s3/kotlin-slack-sign-up) to join.
 
-## Features
-
-Here's a list of features included in this project:
-
-| Name                                           | Description                                                    |
-| ------------------------------------------------|---------------------------------------------------------------- |
-| [Routing](https://start.ktor.io/p/routing)     | Provides a structured routing DSL                              |
-| [Authentication](https://start.ktor.io/p/auth) | Provides extension point for handling the Authorization header |
-| [Swagger](https://start.ktor.io/p/swagger)     | Serves Swagger UI for your project                             |
-
 ## Building & Running
 
 To build or run the project, use one of the following tasks:
