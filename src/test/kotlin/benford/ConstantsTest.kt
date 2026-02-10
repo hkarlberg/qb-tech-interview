@@ -1,6 +1,5 @@
 package se.orthogonal.benford
 
-import kotlinx.serialization.json.Json
 import kotlin.math.log10
 import kotlin.test.Test
 import kotlin.test.assertEquals
