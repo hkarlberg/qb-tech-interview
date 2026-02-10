@@ -45,11 +45,11 @@ private tailrec fun findFirstNonZero(entry: String): Char =
     }
 
 private fun Collection<Int>.countDigits() =
-    this.groupByTo(getBins()) { it }
+    this.groupByTo(generateBins()) { it }
         .mapValues { it.value.size }
         .values
 
-private fun getBins(): SortedMap<Int, MutableList<Int>> = sortedMapOf(
+private fun generateBins(): SortedMap<Int, MutableList<Int>> = sortedMapOf(
     1 to mutableListOf(),
     2 to mutableListOf(),
     3 to mutableListOf(),
