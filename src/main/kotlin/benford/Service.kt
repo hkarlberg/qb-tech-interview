@@ -1,6 +1,7 @@
 package se.orthogonal.benford
 
 import org.apache.commons.math3.stat.inference.ChiSquareTest
+import java.util.SortedMap
 import kotlin.collections.filter
 import kotlin.collections.mapValues
 
@@ -38,8 +39,8 @@ fun analyse(input: BenfordInput): BenfordOutput {
 
 private fun BenfordInput.extractNumbers() =
     this.text
-        .split(',')
-        .zipWithNext()
+        .split("[^a-zA-Z\\d]".toRegex())
+        .chunked(2)
         .map { (_, value) -> value }
 
 private fun Collection<String>.extractLeadingDigit() =
@@ -56,6 +57,18 @@ private tailrec fun findFirstNonZero(entry: String): Char =
     }
 
 private fun Collection<Int>.countDigits() =
-    this.groupByTo(sortedMapOf()){ it } //TODO: assert that it is sorted
+    this.groupByTo(getBins()) { it }
         .mapValues { it.value.size }
         .values
+
+private fun getBins(): SortedMap<Int, MutableList<Int>> = sortedMapOf(
+    1 to mutableListOf(),
+    2 to mutableListOf(),
+    3 to mutableListOf(),
+    4 to mutableListOf(),
+    5 to mutableListOf(),
+    6 to mutableListOf(),
+    7 to mutableListOf(),
+    8 to mutableListOf(),
+    9 to mutableListOf()
+)
